@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: meeting-server
-          image: gcr.io/airy-box-312910/meeting-server:0.0.1-SNAPSHOT
+          image: foo/meeting-server:0.0.1-SNAPSHOT
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081

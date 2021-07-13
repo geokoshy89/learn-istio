@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: work-server
-          image: gcr.io/airy-box-312910/work-server:0.0.1-SNAPSHOT
+          image: foo/work-server:0.0.1-SNAPSHOT
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
