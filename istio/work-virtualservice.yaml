@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: work-server
+  namespace: learn-istio
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - work-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /work
+    route:
+    - destination:
+        host: work-server-service

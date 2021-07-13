@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meeting-server
+  namespace: learn-istio
+spec:
+  selector:
+    matchLabels:
+      component: meeting-server
+  template:
+    metadata:
+      labels:
+        component: meeting-server
+    spec:
+      containers:
+        - name: meeting-server
+          image: gcr.io/airy-box-312910/meeting-server:0.0.1-SNAPSHOT
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081

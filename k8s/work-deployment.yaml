@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: work-server
+  namespace: learn-istio
+spec:
+  selector:
+    matchLabels:
+      component: work-server
+  template:
+    metadata:
+      labels:
+        component: work-server
+    spec:
+      containers:
+        - name: work-server
+          image: gcr.io/airy-box-312910/work-server:0.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENDPOINT
+              value: "http://meeting-server-service:8081/meet"

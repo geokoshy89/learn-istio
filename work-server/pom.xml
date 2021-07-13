@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <parent>
+		<groupId>com.geo</groupId>
+		<artifactId>learn-istio</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.geo</groupId>
+	<artifactId>work-server</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>work-server</name>
+	<description>work-server</description>
+	<properties>
+		<java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+	</properties>
+     <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>com.geo.work.WorkServer</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+  <groupId>com.spotify</groupId>
+  <artifactId>dockerfile-maven-plugin</artifactId>
+  <version>1.4.13</version>
+  <executions>
+    <execution>
+      <id>default</id>
+      <goals>
+        <goal>build</goal>
+        <goal>push</goal>
+      </goals>
+    </execution>
+  </executions>
+  <configuration>
+    <repository>foo/work-server</repository>
+    <tag>${project.version}</tag>
+    <buildArgs>
+      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+    </buildArgs>
+  </configuration>
+</plugin>
+    </plugins>
+  </build>
+</project>
+
